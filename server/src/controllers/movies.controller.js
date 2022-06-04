@@ -1,5 +1,5 @@
 export const getAllMovies = (_req, res) => {
-    return res.json('get all');
+    return res.json('get all docker true');
 };
 
 export const getMovieById = (req, res) => {

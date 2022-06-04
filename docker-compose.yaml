@@ -1,0 +1,44 @@
+version: "3.8"
+
+services:
+    mongodb:
+        image: "mongo"
+
+        ports:
+            - "27017:27017"
+
+        volumes:
+            - data:/data/db
+
+        environment:
+            MONGO_INITDB_ROOT_USERNAME: "test"
+            MONGO_INITDB_ROOT_PASSWORD: "test12345"
+
+    backend:
+        build: ./server
+
+        ports:
+            - "8080:8080"
+        volumes:
+            - ./server/src:/api/src
+        depends_on:
+            - mongodb
+
+    frontend:
+        build: ./client
+
+        ports:
+            - "3000:3000"
+        
+        volumes:
+            - ./client/src:/client/src
+        # allow interactive mode
+        stdin_open: true
+        tty: true
+
+        depends_on:
+            - backend
+
+# declare the volumes name that our app is using.
+volumes:
+    data:

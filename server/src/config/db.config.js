@@ -1,10 +1,17 @@
-import mongoose from 'mongoose';
+import Mongoose from 'mongoose';
 
 const mongoUrl = '';
 
-mongoose
-    .connect(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true })
+Mongoose.connect(mongoUrl, {
+    auth: {
+        username: 'test',
+        password: 'test12345',
+    },
+    authSource: 'admin',
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+})
     .then(() => console.log('MongoDB connected'))
-    .catch(() => console.log(err));
+    .catch(() => console.log('Could not connect to MongoDB: ' + err));
 
-const db = mongoose.connection;
+const db = Mongoose.connection;

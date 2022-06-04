@@ -7,7 +7,7 @@ import routes from './routes';
 import { notFoundHandler } from './middlewares/not-found-handle.middleware';
 
 const app = Express();
-const port = process.env.PORT || 3001;
+const port = process.env.PORT || 8080;
 const limiter = RateLimit({
     windowMs: 15 * 60 * 1000,
     max: 100,
