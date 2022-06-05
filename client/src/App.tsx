@@ -9,9 +9,9 @@ function App() {
     return (
         <>
             <Header />
-            <div className="w-4/5 mx-auto">
+            <div className="w-4/5 mx-auto py-8 flex flex-col gap-8">
                 <MovieBannerSection />
-                <div className="bg-gray-100 px-4">
+                <div className="bg-white px-4 py-8 rounded-md">
                     <MovieListSection movies={["1", "2", "3", "4"]} />
                 </div>
             </div>

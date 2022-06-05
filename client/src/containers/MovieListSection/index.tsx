@@ -6,7 +6,7 @@ type MovieListSectionProps = {
 
 function MovieListSection(props: MovieListSectionProps) {
     return (
-        <div className="py-8">
+        <div className="">
             <h3 className="pl-2 border-l-4 border-orange-500 font-bold text-gray-800 uppercase">
                 New & Upcoming Movies
             </h3>
