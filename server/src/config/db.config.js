@@ -1,17 +1,17 @@
-import Mongoose from 'mongoose';
+import mongoose from 'mongoose';
 
-const mongoUrl = '';
+const mongoUrl = 'mongodb://mongodb:27017/besto-pelis-db';
 
-Mongoose.connect(mongoUrl, {
-    auth: {
-        username: 'test',
-        password: 'test12345',
-    },
-    authSource: 'admin',
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-})
-    .then(() => console.log('MongoDB connected'))
-    .catch(() => console.log('Could not connect to MongoDB: ' + err));
+//const db = mongoose.connection;
 
-const db = Mongoose.connection;
+export const createConnection = () => {
+    return mongoose.connect(mongoUrl, {
+        /* auth: {
+            username: 'test',
+            password: 'test12345',
+        },
+        authSource: 'admin', */
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+    });
+};

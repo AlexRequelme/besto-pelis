@@ -5,8 +5,8 @@ import Morgan from 'morgan';
 import RateLimit from 'express-rate-limit';
 import routes from './routes';
 import { notFoundHandler } from './middlewares/not-found-handle.middleware';
+import { createConnection } from './config/db.config';
 
-const app = Express();
 const port = process.env.PORT || 8080;
 const limiter = RateLimit({
     windowMs: 15 * 60 * 1000,
@@ -15,12 +15,16 @@ const limiter = RateLimit({
     legacyHeaders: false,
 });
 
-app.use(Cors());
-app.use(Helmet());
-app.use(limiter);
-app.use(Morgan('tiny'));
-app.use(Express.json());
-app.use('/api', routes);
-app.use(notFoundHandler);
+createConnection().then(() => {
+    const app = Express();
 
-app.listen(port, () => console.log(`listening on port ${port}`));
+    app.use(Cors());
+    app.use(Helmet());
+    app.use(limiter);
+    app.use(Morgan('tiny'));
+    app.use(Express.json());
+    app.use('/api', routes);
+    app.use(notFoundHandler);
+    
+    app.listen(port, () => console.log(`listening on port ${port}`));
+});

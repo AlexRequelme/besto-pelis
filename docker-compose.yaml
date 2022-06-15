@@ -10,9 +10,9 @@ services:
         volumes:
             - data:/data/db
 
-        environment:
-            MONGO_INITDB_ROOT_USERNAME: "test"
-            MONGO_INITDB_ROOT_PASSWORD: "test12345"
+        #environment:
+            #MONGO_INITDB_ROOT_USERNAME: "test"
+            #MONGO_INITDB_ROOT_PASSWORD: "test12345"
 
     backend:
         build: ./server

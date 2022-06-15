@@ -1,5 +1,8 @@
-export const getAllMovies = (_req, res) => {
-    return res.json('get all docker true');
+import Movie from '../models/movie.model';
+
+export const getAllMovies = async (_req, res) => {
+    const movies = await Movie.find()
+    return res.json(movies);
 };
 
 export const getMovieById = (req, res) => {
